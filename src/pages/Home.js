@@ -10,8 +10,8 @@ import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {globalStyles} from '../utils/styles';
 
-const Home = () => {
-  const [film, setFilm] = useState({});
+const Home = ({navigation}) => {
+  const [film, setFilm] = useState();
 
   useEffect(() => {
     getMoviesFromApi();
@@ -32,7 +32,10 @@ const Home = () => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={globalStyles.header}>New Movies</Text>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('search');
+          }}>
           <Icon name="search" size={28} color="#000" />
         </TouchableOpacity>
       </View>
