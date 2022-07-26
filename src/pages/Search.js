@@ -100,9 +100,13 @@ const Search = ({navigation}) => {
                   marginTop: 10,
                 }}>
                 <Text style={globalStyles.bodyText2}>Science fiction film</Text>
-                <Text style={{...globalStyles.bodyText, alignSelf: 'flex-end'}}>
-                  More
-                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('detail', {data: item})}>
+                  <Text
+                    style={{...globalStyles.bodyText, alignSelf: 'flex-end'}}>
+                    More
+                  </Text>
+                </TouchableOpacity>
               </View>
               <View style={styles.divider} />
             </View>
