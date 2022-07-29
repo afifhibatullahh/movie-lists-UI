@@ -23,7 +23,7 @@ const Search = ({navigation}) => {
       return false;
     } else {
       setLoading(true);
-      fetch(`http://192.168.0.23/react-api/public/film/search/${search}`)
+      fetch(`http://192.168.1.5/api-movies/public/film/search/${search}`)
         .then(response => response.json())
         .then(json => {
           if (json.status == '404') {
@@ -88,18 +88,25 @@ const Search = ({navigation}) => {
                 <Text style={globalStyles.titleText}>{item.judul}</Text>
 
                 <View style={{flexDirection: 'row'}}>
-                  <Icon name="star" size={18} color="#FBDA3A" />
-                  <Icon name="star" size={18} color="#FBDA3A" />
-                  <Icon name="star" size={18} color="#FBDA3A" />
-                  <Icon name="star" size={18} color="#FBDA3A" />
-                  <Icon name="star" size={18} color="#D3D2D7" />
+                  {[...Array(5)].map((x, i) =>
+                    i < parseInt(item.rating) / 2 ? (
+                      <Icon name="star" size={18} color="#FBDA3A" />
+                    ) : (
+                      <Icon name="star" size={18} color="#D3D2D7" />
+                    ),
+                  )}
                 </View>
               </View>
               <View
                 style={{
                   marginTop: 10,
                 }}>
-                <Text style={globalStyles.bodyText2}>Science fiction film</Text>
+                <Text style={globalStyles.bodyText2}>{item.genre}</Text>
+                <Text
+                  style={{...globalStyles.bodyText, marginTop: 3}}
+                  numberOfLines={2}>
+                  {item.sinopsis}
+                </Text>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('detail', {data: item})}>
                   <Text
