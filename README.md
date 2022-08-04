@@ -2,6 +2,7 @@
 
 API 
 to get random data film = 'http://film.afif-tech.xyz/film'
+<br>
 to search data film = 'http://film.afif-tech.xyz/film/search/{query}' 
 
 
