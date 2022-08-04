@@ -11,6 +11,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {globalStyles} from '../utils/styles';
+import {API} from '../utils/global';
 
 const Search = ({navigation}) => {
   const [search, setSearch] = useState();
@@ -23,7 +24,7 @@ const Search = ({navigation}) => {
       return false;
     } else {
       setLoading(true);
-      fetch(`http://192.168.1.5/api-movies/public/film/search/${search}`)
+      fetch(`${API}/film/search/${search}`)
         .then(response => response.json())
         .then(json => {
           if (json.status == '404') {

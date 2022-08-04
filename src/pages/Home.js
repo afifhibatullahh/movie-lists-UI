@@ -9,6 +9,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {globalStyles} from '../utils/styles';
+import {API} from '../utils/global';
 
 const Home = ({navigation}) => {
   const [film, setFilm] = useState();
@@ -18,7 +19,7 @@ const Home = ({navigation}) => {
   }, []);
 
   const getMoviesFromApi = () => {
-    return fetch('http://192.168.1.5/api-movies/public/film')
+    return fetch(`${API}/film`)
       .then(response => response.json())
       .then(json => {
         setFilm(json);
